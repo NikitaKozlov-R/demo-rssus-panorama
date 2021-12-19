@@ -6,7 +6,9 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - name: Deploying to GitHub Pages
-        run: ./deploy.sh
+        shell: bash
+        run: |
+          chmod +x ./deploy.sh
+          ./deploy.sh
