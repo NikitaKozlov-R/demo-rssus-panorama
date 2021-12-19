@@ -1,0 +1,12 @@
+name: GitHub Pages Deploy
+
+on: [pull_request]
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Deploying to GitHub Pages
+        run: ./deploy.sh
