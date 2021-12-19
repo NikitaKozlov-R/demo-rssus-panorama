@@ -105,6 +105,10 @@ body.multiple-scenes.mobile #titleBar {
   user-select: text;
 }
 
+#titleBar .titleBarLink {
+  width: 90px;
+}
+
 #titleBar .titleBarLogo {
   height: 100%;
   margin-left: 16px;
