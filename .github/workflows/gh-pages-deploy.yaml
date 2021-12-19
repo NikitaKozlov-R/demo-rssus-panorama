@@ -6,9 +6,11 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Deploying to GitHub Pages
-        shell: bash
-        run: |
-          chmod +x ./deploy.sh
-          ./deploy.sh
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.7
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: app-files # The folder the action should deploy.
