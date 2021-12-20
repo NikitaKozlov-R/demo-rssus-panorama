@@ -105,13 +105,25 @@ body.multiple-scenes.mobile #titleBar {
   user-select: text;
 }
 
-#titleBar .titleBarLink {
-  width: 90px;
+.logo {
+  width: 200px;
+  position: absolute;
+  right: 16px;
+  bottom: 4px;
+  opacity: 0.4;
+  transition: opacity 0.15s ease-in-out;
 }
 
-#titleBar .titleBarLogo {
-  height: 100%;
-  margin-left: 16px;
+.logo:hover {
+  opacity: 1;
+}
+
+.mobile .logo {
+  width: 128px;
+}
+
+.logo__picture {
+  width: 100%;
 }
 
 .mobile #titleBar .sceneName {
