@@ -447,14 +447,6 @@ body.single-scene #sceneListToggle {
   pointer-events: all;
 }
 
-/* Fallback mode without pointer-events (IE8-10) */
-.tooltip-fallback .link-hotspot-tooltip {
-  display: none;
-}
-.no-touch .tooltip-fallback .link-hotspot:hover .link-hotspot-tooltip {
-  display: block;
-}
-
 /* Info hotspot */
 
 .info-hotspot {

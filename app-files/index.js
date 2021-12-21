@@ -17,7 +17,6 @@
 
 (function () {
   var Marzipano = window.Marzipano;
-  var bowser = window.bowser;
   var screenfull = window.screenfull;
   var data = window.APP_DATA;
 
@@ -54,11 +53,6 @@
     document.body.classList.remove("no-touch");
     document.body.classList.add("touch");
   });
-
-  // Use tooltip fallback mode on IE < 11.
-  if (bowser.msie && parseFloat(bowser.version) < 11) {
-    document.body.classList.add("tooltip-fallback");
-  }
 
   // Viewer options.
   var viewerOpts = {
