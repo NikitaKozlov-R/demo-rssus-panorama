@@ -31,6 +31,7 @@
 
   // Detect desktop or mobile mode.
   if (window.matchMedia) {
+    var mql = matchMedia("(max-width: 500px), (max-height: 500px)");
     var setMode = function () {
       if (mql.matches) {
         document.body.classList.remove("desktop");
@@ -40,9 +41,10 @@
         document.body.classList.add("desktop");
       }
     };
-    var mql = matchMedia("(max-width: 500px), (max-height: 500px)");
+    
+    mql.addEventListener("change", setMode)
+    
     setMode();
-    mql.addListener(setMode);
   } else {
     document.body.classList.add("desktop");
   }
