@@ -20,15 +20,41 @@
   var screenfull = window.screenfull;
   var data = window.APP_DATA;
 
-  // Grab elements from DOM.
-  var panoElement = document.querySelector("#pano");
-  var sceneNameElement = document.querySelector("#titleBar .sceneName");
-  var sceneListElement = document.querySelector("#sceneList");
-  var sceneElements = document.querySelectorAll("#sceneList .scene");
+  // Toggle elements from DOM
   var sceneListToggleElement = document.querySelector("#sceneListToggle");
   var autorotateToggleElement = document.querySelector("#autorotateToggle");
   var fullscreenToggleElement = document.querySelector("#fullscreenToggle");
 
+  // Grab elements from DOM.
+  var panoElement = document.querySelector("#pano");
+  var sceneNameElement = document.querySelector("#titleBar .sceneName");
+  var sceneListElement = document.querySelector("#sceneList");
+
+  // Setup dynamic scenes list from config
+  const sceneList = document.createElement("ul")
+  sceneList.classList.add("scenes")
+
+  data.scenes
+    .map((e) => ({id: e.id, name: e.name}))
+    .forEach((scene) => {
+      const link = document.createElement("a")
+      const listElement = document.createElement("li")
+
+      listElement.textContent = scene.name
+      listElement.classList.add("text")
+
+      link.href = "javascript:void(0)"
+      link.classList.add("scene")
+      link.dataset.id = scene.id 
+
+      link.appendChild(listElement)
+      
+      sceneList.appendChild(link)
+    })
+  
+  sceneListElement.appendChild(sceneList)
+  var sceneElements = document.querySelectorAll("#sceneList .scene");
+  
   // Detect desktop or mobile mode.
   if (window.matchMedia) {
     var mql = matchMedia("(max-width: 500px), (max-height: 500px)");
