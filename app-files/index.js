@@ -17,21 +17,47 @@
 
 (function () {
   var Marzipano = window.Marzipano;
-  var bowser = window.bowser;
   var screenfull = window.screenfull;
   var data = window.APP_DATA;
+
+  // Toggle elements from DOM
+  var sceneListToggleElement = document.querySelector("#sceneListToggle");
+  var autorotateToggleElement = document.querySelector("#autorotateToggle");
+  var fullscreenToggleElement = document.querySelector("#fullscreenToggle");
 
   // Grab elements from DOM.
   var panoElement = document.querySelector("#pano");
   var sceneNameElement = document.querySelector("#titleBar .sceneName");
   var sceneListElement = document.querySelector("#sceneList");
-  var sceneElements = document.querySelectorAll("#sceneList .scene");
-  var sceneListToggleElement = document.querySelector("#sceneListToggle");
-  var autorotateToggleElement = document.querySelector("#autorotateToggle");
-  var fullscreenToggleElement = document.querySelector("#fullscreenToggle");
 
+  // Setup dynamic scenes list from config
+  const sceneList = document.createElement("ul")
+  sceneList.classList.add("scenes")
+
+  data.scenes
+    .map((e) => ({id: e.id, name: e.name}))
+    .forEach((scene) => {
+      const link = document.createElement("a")
+      const listElement = document.createElement("li")
+
+      listElement.textContent = scene.name
+      listElement.classList.add("text")
+
+      link.href = "javascript:void(0)"
+      link.classList.add("scene")
+      link.dataset.id = scene.id 
+
+      link.appendChild(listElement)
+      
+      sceneList.appendChild(link)
+    })
+  
+  sceneListElement.appendChild(sceneList)
+  var sceneElements = document.querySelectorAll("#sceneList .scene");
+  
   // Detect desktop or mobile mode.
   if (window.matchMedia) {
+    var mql = matchMedia("(max-width: 500px), (max-height: 500px)");
     var setMode = function () {
       if (mql.matches) {
         document.body.classList.remove("desktop");
@@ -41,9 +67,10 @@
         document.body.classList.add("desktop");
       }
     };
-    var mql = matchMedia("(max-width: 500px), (max-height: 500px)");
+    
+    mql.addEventListener("change", setMode)
+    
     setMode();
-    mql.addListener(setMode);
   } else {
     document.body.classList.add("desktop");
   }
@@ -54,11 +81,6 @@
     document.body.classList.remove("no-touch");
     document.body.classList.add("touch");
   });
-
-  // Use tooltip fallback mode on IE < 11.
-  if (bowser.msie && parseFloat(bowser.version) < 11) {
-    document.body.classList.add("tooltip-fallback");
-  }
 
   // Viewer options.
   var viewerOpts = {
@@ -170,81 +192,6 @@
       }
     });
   });
-
-  // DOM elements for view controls.
-  // var viewUpElement = document.querySelector('#viewUp');
-  // var viewDownElement = document.querySelector('#viewDown');
-  // var viewLeftElement = document.querySelector('#viewLeft');
-  // var viewRightElement = document.querySelector('#viewRight');
-  // var viewInElement = document.querySelector('#viewIn');
-  // var viewOutElement = document.querySelector('#viewOut');
-
-  // Dynamic parameters for controls.
-  // var velocity = 0.7;
-  // var friction = 3;
-
-  // // Associate view controls with elements.
-  // var controls = viewer.controls();
-  // controls.registerMethod(
-  //   "upElement",
-  //   new Marzipano.ElementPressControlMethod(
-  //     viewUpElement,
-  //     "y",
-  //     -velocity,
-  //     friction
-  //   ),
-  //   true
-  // );
-  // controls.registerMethod(
-  //   "downElement",
-  //   new Marzipano.ElementPressControlMethod(
-  //     viewDownElement,
-  //     "y",
-  //     velocity,
-  //     friction
-  //   ),
-  //   true
-  // );
-  // controls.registerMethod(
-  //   "leftElement",
-  //   new Marzipano.ElementPressControlMethod(
-  //     viewLeftElement,
-  //     "x",
-  //     -velocity,
-  //     friction
-  //   ),
-  //   true
-  // );
-  // controls.registerMethod(
-  //   "rightElement",
-  //   new Marzipano.ElementPressControlMethod(
-  //     viewRightElement,
-  //     "x",
-  //     velocity,
-  //     friction
-  //   ),
-  //   true
-  // );
-  // controls.registerMethod(
-  //   "inElement",
-  //   new Marzipano.ElementPressControlMethod(
-  //     viewInElement,
-  //     "zoom",
-  //     -velocity,
-  //     friction
-  //   ),
-  //   true
-  // );
-  // controls.registerMethod(
-  //   "outElement",
-  //   new Marzipano.ElementPressControlMethod(
-  //     viewOutElement,
-  //     "zoom",
-  //     velocity,
-  //     friction
-  //   ),
-  //   true
-  // );
 
   function sanitize(s) {
     return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
