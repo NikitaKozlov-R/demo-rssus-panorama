@@ -21,15 +21,17 @@ let counter = Number();
 function whilemousedown() {
   counter += 1;
   if (counter === 70) {
-    console.log("10 sec!");
+    logoDiv.classList.add("hidden");
+    haroldDiv.classList.remove("hidden");
   }
 }
 
-//Select element of logo
-let element = document.querySelector(".logo");
+//Select elements of logo & harold
+let logoDiv = document.querySelector(".logo");
+let haroldDiv = document.querySelector(".harold");
 
 //Assign events
-element.addEventListener("mousedown", mousedown);
-element.addEventListener("mouseup", mouseup);
+logoDiv.addEventListener("mousedown", mousedown);
+logoDiv.addEventListener("mouseup", mouseup);
 //Also clear the interval when user leaves the window with mouse
-element.addEventListener("mouseout", mouseup);
+logoDiv.addEventListener("mouseout", mouseup);
