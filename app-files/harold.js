@@ -1,4 +1,4 @@
-var mousedownID = -1; //Global ID of mouse down interval
+let mousedownID = -1; //Global ID of mouse down interval
 
 function mousedown(event) {
   if (mousedownID == -1)
@@ -11,15 +11,25 @@ function mouseup(event) {
     //Only stop if exists
     clearInterval(mousedownID);
     mousedownID = -1;
+    counter = 0;
   }
 }
 
+// function call counter
+let counter = Number();
+
 function whilemousedown() {
-  /*here put your code*/
+  counter += 1;
+  if (counter === 70) {
+    console.log("10 sec!");
+  }
 }
 
+//Select element of logo
+let element = document.querySelector(".logo");
+
 //Assign events
-document.addEventListener("mousedown", mousedown);
-document.addEventListener("mouseup", mouseup);
+element.addEventListener("mousedown", mousedown);
+element.addEventListener("mouseup", mouseup);
 //Also clear the interval when user leaves the window with mouse
-document.addEventListener("mouseout", mouseup);
+element.addEventListener("mouseout", mouseup);
