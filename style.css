@@ -33,7 +33,7 @@ body {
   padding: 0;
   margin: 0;
   overflow: hidden;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 16px;
   background-color: var(--color-black);
   color: var(--color-white);
@@ -556,7 +556,7 @@ body.single-scene #sceneListToggle {
 }
 
 .info-hotspot .info-hotspot-title-wrapper:before {
-  content: "";
+  content: '';
   display: inline-block;
   vertical-align: middle;
   height: 100%;
@@ -722,7 +722,7 @@ body.single-scene #sceneListToggle {
 }
 
 .info-hotspot-modal .info-hotspot-title-wrapper:before {
-  content: "";
+  content: '';
   display: inline-block;
   vertical-align: middle;
   height: 100%;
