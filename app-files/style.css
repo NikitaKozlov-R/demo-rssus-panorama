@@ -126,6 +126,21 @@ body.multiple-scenes.mobile #titleBar {
   width: 100%;
 }
 
+.harold {
+  width: 312px;
+  position: absolute;
+  right: -54px;
+  bottom: -32px;
+}
+
+.harold__picture {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
 .mobile #titleBar .sceneName {
   line-height: 40px;
 }
